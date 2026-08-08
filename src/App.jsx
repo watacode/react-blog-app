@@ -35,7 +35,7 @@ function App() {
                 ))}
               </div>
               <h2 className="text-xl font-bold mb-2">{post.title}</h2>
-              <p
+              <div
                 className="line-clamp-2 text-gray-600 text-xl"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
