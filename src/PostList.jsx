@@ -10,7 +10,7 @@ function PostList() {
         <h2 className="text-2xl font-bold my-6">記事一覧</h2>
 
         {posts.map((post) => (
-          <Link to={`/post/${post.id}`}>
+          <Link to={`/posts/${post.id}`}>
             <div
               key={post.id}
               className="flex border-b border-gray-300 pb-6 mb-6"

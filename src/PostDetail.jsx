@@ -5,6 +5,10 @@ function PostDetail() {
   const { id } = useParams();
   const post = posts.find((p) => p.id === Number(id));
 
+  if (!post) {
+    return <p className="py-6 px-4 text-xl">記事が見つかりませんでした</p>;
+  }
+
   return (
     <div className="py-6 px-4">
       <img src={post.thumbnailUrl} />
