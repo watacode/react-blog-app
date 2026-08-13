@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 function PostDetail() {
   const { id } = useParams();
 
-  const [post, setPosts] = useState(null);
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // APIでpostsを取得する処理をuseEffectで実行します。
   useEffect(() => {
@@ -14,11 +15,16 @@ function PostDetail() {
         `https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`,
       );
       const data = await res.json();
-      setPosts(data.post);
+      setPost(data.post);
+      setLoading(false);
     };
 
     fetcher();
   }, []);
+
+  if (loading) {
+    return <p className="py-6 px-4 text-xl">読み込み中</p>;
+  }
 
   if (!post) {
     return <p className="py-6 px-4 text-xl">記事が見つかりませんでした</p>;

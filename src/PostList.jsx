@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 function PostList() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // APIでpostsを取得する処理をuseEffectで実行します。
   useEffect(() => {
@@ -13,10 +14,19 @@ function PostList() {
       );
       const data = await res.json();
       setPosts(data.posts);
+      setLoading(false);
     };
 
     fetcher();
   }, []);
+
+  if (loading) {
+    return <p className="py-6 px-4 text-xl">読み込み中</p>;
+  }
+
+  if (posts.length === 0) {
+    return <p className="py-6 px-4 text-xl">記事が見つかりませんでした</p>;
+  }
 
   return (
     <>
