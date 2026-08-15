@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostList from "./PostList";
 import PostDetail from "./PostDetail";
-import Form from "./Form";
+import Contact from "./Contact";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Link to="/">
           <h2 className="font-bold text-xl">Blog</h2>
         </Link>
-        <Link to="/form">
+        <Link to="/contact">
           <h2 className="font-bold text-xl">問い合わせ</h2>
         </Link>
       </header>
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PostList />} />
         <Route path="/posts/:id" element={<PostDetail />} />
-        <Route path="/form" element={<Form />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   );

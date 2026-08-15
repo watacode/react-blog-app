@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form() {
+function Contact() {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -13,7 +13,7 @@ function Form() {
     message: "",
   });
 
-  const [send, setSend] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -52,7 +52,7 @@ function Form() {
     setError(newErrors);
 
     if (!hasError) {
-      setSend(true);
+      setSending(true);
       const res = await fetch(
         "https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts",
         {
@@ -62,16 +62,12 @@ function Form() {
       );
 
       alert("送信しました");
-      setSend(false);
-      setForm({
-        name: "",
-        email: "",
-        message: "",
-      });
+      setSending(false);
+      clearForm()
     }
   };
 
-  const clearButton = () => {
+  const clearForm = () => {
     setForm({
       name: "",
       email: "",
@@ -92,7 +88,7 @@ function Form() {
               name="name"
               value={form.name}
               onChange={handleChange}
-              disabled={send}
+              disabled={sending}
               className="border border-gray-300 rounded px-3 py-2 flex-1"
             />
           </div>
@@ -105,7 +101,7 @@ function Form() {
               name="email"
               value={form.email}
               onChange={handleChange}
-              disabled={send}
+              disabled={sending}
               className="border border-gray-300 rounded px-3 py-2 flex-1"
             />
           </div>
@@ -117,7 +113,7 @@ function Form() {
               name="message"
               value={form.message}
               onChange={handleChange}
-              disabled={send}
+              disabled={sending}
               rows={6}
               className="border border-gray-300 rounded px-3 py-2 flex-1"
             />
@@ -127,14 +123,14 @@ function Form() {
           <div className="flex gap-2 justify-center mt-4">
             <button
               onClick={submitButton}
-              disabled={send}
+              disabled={sending}
               className="bg-gray-800 text-white px-6 py-2 rounded"
             >
               送信
             </button>
             <button
-              onClick={clearButton}
-              disabled={send}
+              onClick={clearForm}
+              disabled={sending}
               className="bg-gray-200 px-6 py-2 rounded"
             >
               クリア
@@ -146,4 +142,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default Contact;
