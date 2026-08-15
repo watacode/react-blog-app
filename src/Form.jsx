@@ -84,46 +84,62 @@ function Form() {
       <div className="px-6 py-2">
         <h1 className="text-2xl font-bold my-6">問い合わせフォーム</h1>
 
-        <form className="flex flex-col">
-          <label>お名前</label>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            disabled={send}
-            className="border border-gray-400 rounded px-3 py-2"
-          />
-          <p>{error.name}</p>
+        <form className="flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <label className="text-lg  w-32">お名前</label>
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              disabled={send}
+              className="border border-gray-300 rounded px-3 py-2 flex-1"
+            />
+          </div>
+          <p className="text-red-500 text-sm ml-40 mb-6">{error.name}</p>
 
-          <label>メールアドレス</label>
-          <input
-            type="text"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            disabled={send}
-            className="border border-gray-400 rounded px-3 py-2"
-          />
-          <p>{error.email}</p>
+          <div className="flex items-center gap-4">
+            <label className="text-lg w-32">メールアドレス</label>
+            <input
+              type="text"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              disabled={send}
+              className="border border-gray-300 rounded px-3 py-2 flex-1"
+            />
+          </div>
+          <p className="text-red-500 text-sm ml-40 mb-6">{error.email}</p>
 
-          <label>本文</label>
-          <input
-            type="text"
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            disabled={send}
-            className="border border-gray-400 rounded px-3 py-2"
-          />
-          <p>{error.message}</p>
+          <div className="flex items-center gap-4 my-">
+            <label className="text-lg w-32 ">本文</label>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              disabled={send}
+              rows={6}
+              className="border border-gray-300 rounded px-3 py-2 flex-1"
+            />
+          </div>
+          <p className="text-red-500 text-sm ml-40 mb-6">{error.message}</p>
 
-          <button onClick={submitButton} disabled={send}>
-            送信
-          </button>
-          <button onClick={clearButton} disabled={send}>
-            クリア
-          </button>
+          <div className="flex gap-2 justify-center mt-4">
+            <button
+              onClick={submitButton}
+              disabled={send}
+              className="bg-gray-800 text-white px-6 py-2 rounded"
+            >
+              送信
+            </button>
+            <button
+              onClick={clearButton}
+              disabled={send}
+              className="bg-gray-200 px-6 py-2 rounded"
+            >
+              クリア
+            </button>
+          </div>
         </form>
       </div>
     </>
